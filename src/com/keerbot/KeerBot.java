@@ -1,4 +1,4 @@
-package com.example.keerbot;
+package com.keerbot;
 
 import ioio.lib.api.exception.ConnectionLostException;
 import android.graphics.PathMeasure;

@@ -1,4 +1,4 @@
-package com.example.keerbot;
+package com.keerbot;
 
 //import android.util.Log;
 import ioio.lib.api.DigitalOutput;

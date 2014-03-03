@@ -1,4 +1,6 @@
-package com.example.keerbot;
+package com.keerbot;
+
+import com.example.keerbot.R;
 
 import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;

@@ -1,4 +1,6 @@
-package com.example.keerbot;
+package com.keerbot;
+
+import com.example.keerbot.R;
 
 import android.os.Bundle;
 import android.app.Activity;
