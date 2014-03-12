@@ -67,9 +67,10 @@ public class StepperMotor {
     			stp_ = ioio_.openPwmOutput(stpPin_,Math.abs(stepsPerSecond));
     		}
 
-    		stp_.setPulseWidth(10);
+    		//stp_.setPulseWidth(10);
     		stp_.setDutyCycle(dutyCycle_);
     	} catch (ConnectionLostException e) {	
+    		
     		stop();
     		throw new ConnectionLostException(e);
     	} 

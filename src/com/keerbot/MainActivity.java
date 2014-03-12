@@ -1,7 +1,6 @@
 package com.keerbot;
 
-import com.example.keerbot.R;
-
+import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;
 import ioio.lib.util.IOIOLooper;
@@ -16,12 +15,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
+import com.example.keerbot.R;
 
 
 /**
@@ -34,10 +34,14 @@ import android.widget.TextView;
  */
 public class MainActivity extends IOIOActivity {
 	//private static final String TAG = "MainActivity";
+
+	private ToggleButton ledButton;
+
 	private Button leftMotorUp;
 	private Button leftMotorDown;
 	private Button rightMotorUp;
 	private Button rightMotorDown;
+
 
 	private SeekBar leftSpeed;
 	private SeekBar rightSpeed;
@@ -46,37 +50,38 @@ public class MainActivity extends IOIOActivity {
 
 	private TextView statusView;	
 
+	/*
 	private Button Up;
 	private Button Down;
 	private Button Right;
 	private Button Left;
-	
+
 	private Button drawShape;
 
 	double stepSizeMeter;
-	
+
 	private SeekBar topWireBar;
 	private SeekBar leftWireBar;
 	private SeekBar rightWireBar;
-	
+
 	private TextView topWireText;
 	private TextView leftWireText;
 	private TextView rightWireText;
-	
+
 	public Switch openDrain;
-	
+
 	private Path path;
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main_activity_actions, menu);	    
 	    return super.onCreateOptionsMenu(menu);
-	    
+
 	}
-	
-	
+
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
@@ -91,15 +96,17 @@ public class MainActivity extends IOIOActivity {
 		}
 		return true;
 	}
-	
-	
-		
-	
+
+
+
+
 	public boolean openSettings() {
 		statusView.setText("Settings");
 		return true;
 	}
-	
+
+	 */
+
 
 	/**
 	 * Called when the activity is first created. Here we normally initialize
@@ -109,32 +116,40 @@ public class MainActivity extends IOIOActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
-//		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		//		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		//getActionBar().setDisplayHomeAsUpEnabled(true);
 		// Create a straight line
+
+		ledButton = (ToggleButton) findViewById(R.id.ledButton);
+		/*
 		path = new Path();
 		path.moveTo((float)0.10, (float)0.70);
-		
+
 		path.lineTo((float)0.20,(float) 0.70);
 		path.lineTo((float)0.20,(float) 0.90);
 		path.lineTo((float)0.10,(float) 0.90);
 		path.lineTo((float)0.10,(float) 0.70);
-		
+
 		//SVG svg = SVGParser.getSVGFromResource(getResources(), R.drawable.spiral);
 		//svg.
-		
-		
-		statusView = (TextView) findViewById(R.id.statusView);				
+
+		 */
+
+		statusView = (TextView) findViewById(R.id.statusView);	
+
+
 		leftMotorUp = (Button) findViewById(R.id.leftUp);
 		leftMotorDown = (Button) findViewById(R.id.leftDown);
 		rightMotorUp = (Button) findViewById(R.id.rightUp);
 		rightMotorDown = (Button) findViewById(R.id.rightDown);
+
 
 		leftSpeed = (SeekBar) findViewById(R.id.leftSpeed); 
 		rightSpeed = (SeekBar) findViewById(R.id.rightSpeed); 
 		leftDutyCycle = (SeekBar) findViewById(R.id.leftDutyCycle);
 		rightDutyCycle = (SeekBar) findViewById(R.id.rightDutyCycle);
 
+		/*
 		Up = (Button) findViewById(R.id.up);
 		Down = (Button) findViewById(R.id.down);
 		Left = (Button) findViewById(R.id.left);
@@ -144,25 +159,25 @@ public class MainActivity extends IOIOActivity {
 		topWireBar  = (SeekBar) findViewById(R.id.TopWireBar);
 		leftWireBar = (SeekBar) findViewById(R.id.LeftWireBar);
 		rightWireBar = (SeekBar) findViewById(R.id.RightWireBar);
-		
+
 		topWireText = (TextView) findViewById(R.id.TopWireText);
 		leftWireText = (TextView) findViewById(R.id.LeftWireText);
 		rightWireText = (TextView) findViewById(R.id.RightWireText);
-		
+
 		topWireText.setText("Top Wire " + Double.valueOf((double)topWireBar.getProgress()/100.0).toString() + "m");
 		leftWireText.setText("Left Wire " + Double.valueOf((double)leftWireBar.getProgress()/100.0).toString() + "m");
 		rightWireText.setText("Right Wire " + Double.valueOf((double)rightWireBar.getProgress()/100.0).toString() + "m");
-		
-		drawShape = (Button) findViewById(R.id.drawButton);		
-		
+
+		//drawShape = (Button) findViewById(R.id.drawButton);		
+
 		//Settings Activity
-		
+
 		openDrain = (Switch) findViewById(R.id.openDrain);
 		//openDrain.setActivated(false);
-		
-		
 
-		
+
+		 */
+
 	}
 
 	/**
@@ -174,10 +189,14 @@ public class MainActivity extends IOIOActivity {
 	 */
 	class Looper extends BaseIOIOLooper {
 
+		private DigitalOutput led;
+
 		private StepperMotor leftMotor;
 		private StepperMotor rightMotor;
+		/*
 
-		
+
+
 		private KeerBot keerBot;
 
 		private double topWireMeter;
@@ -185,8 +204,8 @@ public class MainActivity extends IOIOActivity {
 		private double rightWireMeter;
 		private double meterPerStep;
 		private double maxStepsPerSecond;
-		 		
 
+		 */
 		/**
 		 * Called every time a connection with IOIO has been established.
 		 * Typically used to open pins.
@@ -198,23 +217,25 @@ public class MainActivity extends IOIOActivity {
 		 */
 		@Override
 		protected void setup() throws ConnectionLostException {		
-			statusView.setText("setup : Running");
+			//statusView.setText("setup : Running");
+
+			led = ioio_.openDigitalOutput(0, true);
+
 
 			leftMotor  = new StepperMotor(ioio_,42,3);	
 			leftMotor.setDutyCycle((float)leftDutyCycle.getProgress()/100.0);
-			leftMotor.setOpenDrain(openDrain.isChecked());
+			//leftMotor.setOpenDrain(false);
 
 			rightMotor = new StepperMotor(ioio_,43,4);	
 			rightMotor.setDutyCycle((float)rightDutyCycle.getProgress()/100.0);
-			rightMotor.setOpenDrain(openDrain.isChecked());
+			//rightMotor.setOpenDrain(false); //openDrain.isChecked()
 
-			
 			//topWireMeter = 0.45-0.10; //distance between the upper pivot points minus the distance between the keerbot pivot points. 
-
+			/*
 			topWireMeter = (double)topWireBar.getProgress()/100.0;  // length of top wire
 			leftWireMeter = (double)leftWireBar.getProgress()/100.0; //length of left wire
 			rightWireMeter = (double)rightWireBar.getProgress()/100.0; // length of right wire
-			
+
 			double stepsPerRevolution = 200.0;
 			double spindleRadiusMeter = 0.00375;
 
@@ -232,8 +253,8 @@ public class MainActivity extends IOIOActivity {
 				}       
 
 			});
-			*/			
-			
+
+
 			topWireBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 				@Override
@@ -254,7 +275,7 @@ public class MainActivity extends IOIOActivity {
 				}
 
 			});
-			
+
 			leftWireBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 				@Override
@@ -296,7 +317,7 @@ public class MainActivity extends IOIOActivity {
 				}
 
 			});		
-			
+
 			Up.setOnTouchListener(new View.OnTouchListener() {
 
 				public boolean onTouch(View v, MotionEvent event) {
@@ -383,7 +404,7 @@ public class MainActivity extends IOIOActivity {
 					case MotionEvent.ACTION_DOWN:
 						statusView.setText("drawing shape : ongoing...");
 						keerBot.makePath(path);	
-						
+
 						statusView.setText("drawing shape : done");
 
 						break;						
@@ -392,6 +413,8 @@ public class MainActivity extends IOIOActivity {
 				}
 			});	
 
+
+			 */
 			leftMotorUp.setOnTouchListener(new View.OnTouchListener() {
 
 				public boolean onTouch(View v, MotionEvent event) {
@@ -542,7 +565,8 @@ public class MainActivity extends IOIOActivity {
 					// TODO Auto-generated method stub
 				}
 
-			});								
+			});		
+
 		}
 
 		/**
@@ -555,12 +579,12 @@ public class MainActivity extends IOIOActivity {
 		 */
 		@Override
 		public void loop() throws ConnectionLostException {
-
+			led.write(!ledButton.isChecked());
 			try {
 
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				statusView.setText("ioi loop() : Exception - " + e.toString());
+				//statusView.setText("ioi loop() : Exception - " + e.toString());
 				e.printStackTrace();
 			}
 		}

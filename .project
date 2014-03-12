@@ -3,6 +3,10 @@
 	<name>KeerBot</name>
 	<comment></comment>
 	<projects>
+		<project>IOIOLibAccessory</project>
+		<project>IOIOLibAndroid</project>
+		<project>IOIOLibAndroidDevice</project>
+		<project>IOIOLibBT</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
