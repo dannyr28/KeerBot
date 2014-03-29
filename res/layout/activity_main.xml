@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:max="10000"
-                android:progress="200" />
+                android:progress="2000" />
 
             <SeekBar
                 android:id="@+id/rightSpeed"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:max="10000"
-                android:progress="200" />
+                android:progress="2000" />
 
         </TableRow>
 

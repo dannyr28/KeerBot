@@ -217,7 +217,7 @@ public class MainActivity extends IOIOActivity {
 		 */
 		@Override
 		protected void setup() throws ConnectionLostException {		
-			//statusView.setText("setup : Running");
+			statusView.setText("setup : Running");
 
 			led = ioio_.openDigitalOutput(0, true);
 
@@ -420,7 +420,7 @@ public class MainActivity extends IOIOActivity {
 				public boolean onTouch(View v, MotionEvent event) {
 					System.out.println("pressed");
 					try {
-						Integer speed = -Math.abs(leftSpeed.getProgress());
+						Integer speed = (int)-Math.abs(leftSpeed.getProgress());
 						switch (event.getAction())
 						{
 						case MotionEvent.ACTION_DOWN:
@@ -448,11 +448,11 @@ public class MainActivity extends IOIOActivity {
 				public boolean onTouch(View v, MotionEvent event) {
 					System.out.println("pressed");
 					try {
-						Integer speed = Math.abs(leftSpeed.getProgress());
+						Integer speed = (int)Math.abs(leftSpeed.getProgress());						
 						switch (event.getAction())
 						{
 						case MotionEvent.ACTION_DOWN:
-							statusView.setText("LeftMotorDown : "  + speed.toString());
+							statusView.setText("LeftMotorDown : "  + speed);
 							leftMotor.setSpeed(speed);												
 							break;						
 
@@ -476,7 +476,7 @@ public class MainActivity extends IOIOActivity {
 				public boolean onTouch(View v, MotionEvent event) {
 					System.out.println("pressed");
 					try {
-						Integer speed = -Math.abs(rightSpeed.getProgress());
+						Integer speed = (int)-Math.abs(rightSpeed.getProgress());
 						switch (event.getAction())
 						{
 						case MotionEvent.ACTION_DOWN:
@@ -504,7 +504,7 @@ public class MainActivity extends IOIOActivity {
 				public boolean onTouch(View v, MotionEvent event) {
 					System.out.println("pressed");
 					try {
-						Integer speed = Math.abs(rightSpeed.getProgress());
+						Integer speed = (int)Math.abs(rightSpeed.getProgress());
 						switch (event.getAction())
 						{
 						case MotionEvent.ACTION_DOWN:
