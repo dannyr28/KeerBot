@@ -50,13 +50,13 @@ public class MainActivity extends IOIOActivity {
 
 	private TextView statusView;	
 
-	/*
+	
 	private Button Up;
 	private Button Down;
 	private Button Right;
 	private Button Left;
 
-	private Button drawShape;
+	//private Button drawShape;
 
 	double stepSizeMeter;
 
@@ -68,10 +68,11 @@ public class MainActivity extends IOIOActivity {
 	private TextView leftWireText;
 	private TextView rightWireText;
 
-	public Switch openDrain;
+	//public Switch openDrain;
 
-	private Path path;
+	//private Path path;
 
+		/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
@@ -149,7 +150,7 @@ public class MainActivity extends IOIOActivity {
 		leftDutyCycle = (SeekBar) findViewById(R.id.leftDutyCycle);
 		rightDutyCycle = (SeekBar) findViewById(R.id.rightDutyCycle);
 
-		/*
+		
 		Up = (Button) findViewById(R.id.up);
 		Down = (Button) findViewById(R.id.down);
 		Left = (Button) findViewById(R.id.left);
@@ -172,11 +173,11 @@ public class MainActivity extends IOIOActivity {
 
 		//Settings Activity
 
-		openDrain = (Switch) findViewById(R.id.openDrain);
+		//openDrain = (Switch) findViewById(R.id.openDrain);
 		//openDrain.setActivated(false);
 
 
-		 */
+		 
 
 	}
 
@@ -193,7 +194,7 @@ public class MainActivity extends IOIOActivity {
 
 		private StepperMotor leftMotor;
 		private StepperMotor rightMotor;
-		/*
+		
 
 
 
@@ -205,7 +206,7 @@ public class MainActivity extends IOIOActivity {
 		private double meterPerStep;
 		private double maxStepsPerSecond;
 
-		 */
+		 
 		/**
 		 * Called every time a connection with IOIO has been established.
 		 * Typically used to open pins.
@@ -230,8 +231,8 @@ public class MainActivity extends IOIOActivity {
 			rightMotor.setDutyCycle((float)rightDutyCycle.getProgress()/100.0);
 			//rightMotor.setOpenDrain(false); //openDrain.isChecked()
 
-			//topWireMeter = 0.45-0.10; //distance between the upper pivot points minus the distance between the keerbot pivot points. 
-			/*
+			topWireMeter = 0.45-0.10; //distance between the upper pivot points minus the distance between the keerbot pivot points. 
+			
 			topWireMeter = (double)topWireBar.getProgress()/100.0;  // length of top wire
 			leftWireMeter = (double)leftWireBar.getProgress()/100.0; //length of left wire
 			rightWireMeter = (double)rightWireBar.getProgress()/100.0; // length of right wire
@@ -254,7 +255,7 @@ public class MainActivity extends IOIOActivity {
 
 			});
 
-
+			*/
 			topWireBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 				@Override
@@ -393,7 +394,8 @@ public class MainActivity extends IOIOActivity {
 					return false;
 				}
 			});	
-
+			
+			/*
 			drawShape.setOnTouchListener(new View.OnTouchListener() {
 
 				public boolean onTouch(View v, MotionEvent event) {
